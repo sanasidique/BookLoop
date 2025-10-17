@@ -1,0 +1,59 @@
+{% extends 'Admin/adminhome.html'%}
+{% block body %}
+<body class="bg-light">
+
+<div class="container py-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-success text-white text-center">
+            <h4 class="mb-0">Book Reviews</h4>
+        </div>
+        <div class="card-body">
+            <form id="form1" name="form1" method="post">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle text-center">
+                        <thead class="table-success">
+                            <tr>
+                                <th>Sl. No</th>
+                                <th>Book</th>
+                                <th>Review</th>
+                                <th>Date</th>
+                                <th>Rating</th>
+                                <th>User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ i.BOOK.name }}</td>
+                                <td>{{ i.review|truncatechars:60 }}</td>
+                                <td>{{ i.date }}</td>
+                                <td>
+                                    {% for star in "12345"|make_list %}
+                                        {% if star <= i.rating %}
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                        {% else %}
+                                            <i class="bi bi-star text-muted"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ i.USER.name }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center text-muted">No reviews available</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+</body>
+{% endblock %}

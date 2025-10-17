@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>BookSaw</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="/static/user/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/static/user/icomoon/icomoon.css">
+	<link rel="stylesheet" type="text/css" href="/static/user/css/vendor.css">
+	<link rel="stylesheet" type="text/css" href="/static/user/style.css">
+
+
+
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
+
+
+	<div id="header-wrap">
+
+
+		<div class="top-content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="social-links">
+
+						</div><!--social-links-->
+					</div>
+					<div class="col-md-6">
+						<div class="right-element">
+							<a href="/Myapp/View_profile" class="user-account for-buy"><i
+									class="icon icon-user"></i><span>Account</span></a>
+
+
+							<div class="action-menu">
+
+								<div class="search-bar">
+									<a href="" class="search-button search-toggle" data-selector="#header-wrap">
+										<i class="icon icon-search"></i>
+									</a>
+									<form role="search" method="get"  class="search-box">
+										<input class="search-field text search-input" placeholder="Search"
+											type="search">
+									</form>
+								</div>
+							</div>
+
+						</div><!--top-right-->
+					</div>
+
+				</div>
+			</div>
+		</div><!--top-content-->
+
+		<header id="header">
+			<div class="container-fluid">
+				<div class="row">
+
+					<div class="col-md-2">
+						<div class="main-logo">
+							<a style="font-weight: 600">Book Loop</a>
+						</div>
+
+					</div>
+
+					<div class="col-md-10">
+
+						<nav id="navbar">
+							<div class="main-menu stellarnav">
+								<ul class="menu-list">
+									<li class="menu-item active"><a href="/Myapp/UserHome/">Home</a></li>
+
+									<li class="menu-item"><a href="#featured-books" class="nav-link">Books</a></li>
+									<li class="menu-item"><a href="#popular-books" class="nav-link">Popular</a></li>
+                                    <li class="menu-item has-sub">
+										<a href="#pages" class="nav-link">Pages</a>
+
+										<ul>
+											<li class="active"><a href="/Myapp/View_profile">Profile</a></li>
+
+											<li><a href=""  data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change Password</a></li>
+											<li><a href="/Myapp/view_request/">View Requests</a></li>
+											<li><a href="/Myapp/ViewPayment/">View Payments</a></li>
+											<li><a href="/Myapp/ViewNotification/">View Notifications</a></li>
+											<li><a href="#complaint">Complaint</a></li>
+											<li><a href="/Myapp/LogOut/">LogOut</a></li>
+										</ul>
+
+									</li>
+											<li><a href="">‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </a></li>
+                                    <li>  </li>
+                                    <li>  </li>
+								</ul>
+
+								<div class="hamburger">
+									<span class="bar"></span>
+									<span class="bar"></span>
+									<span class="bar"></span>
+								</div>
+
+							</div>
+						</nav>
+
+					</div>
+
+				</div>
+			</div>
+		</header>
+
+	</div><!--header-wrap-->
+    {% include 'Admin/msgalert.html' %}
+        {% block content %}
+        {% endblock %}
+
+	<section id="billboard">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<button class="prev slick-arrow">
+						<i class="icon icon-arrow-left"></i>
+					</button>
+
+					<div class="main-slider pattern-overlay">
+
+                        {% for i in book %}
+						<div class="slider-item">
+							<div class="banner-content">
+								<h2 class="banner-title">{{ i.name }}</h2>
+								<p>{{ i.details }}</p>
+								<div class="btn-wrap">
+									<a href="#" class="btn btn-outline-accent btn-accent-arrow">₹ {{ i.price }}<i
+											class="icon icon-ns"></i></a>
+								</div>
+							</div><!--banner-content-->
+							<img src="{{ i.photo.url }}" alt="banner" class="banner-image" width="300">
+						</div><!--slider-item-->
+                        {% endfor %}
+					</div><!--slider-->
+
+					<button class="next slick-arrow">
+						<i class="icon icon-arrow-right"></i>
+					</button>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section id="client-holder" data-aos="fade-up">
+		<div class="container">
+			<div class="row">
+				<div class="inner-content">
+					<div class="logo-wrap">
+						<div class="grid">
+							<a href="#"><img src="/static/user/images/client-image1.png" alt="client"></a>
+							<a href="#"><img src="/static/user/images/client-image2.png" alt="client"></a>
+							<a href="#"><img src="/static/user/images/client-image3.png" alt="client"></a>
+							<a href="#"><img src="/static/user/images/client-image4.png" alt="client"></a>
+							<a href="#"><img src="/static/user/images/client-image5.png" alt="client"></a>
+						</div>
+					</div><!--image-holder-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="featured-books" class="py-5 my-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="section-header align-center">
+						<div class="title">
+							<span>Some quality items</span>
+						</div>
+						<h2 class="section-title">My Books</h2>
+					</div>
+
+					<div class="product-list" data-aos="fade-up">
+						<div class="row">
+                            {% for i in data %}
+                                <div class="col-md-3">
+                                    <div class="product-item card shadow-sm p-2">
+                                        <figure class="product-style">
+                                            <img src="{{ i.photo.url }}" alt="Books" class="product-item img-fluid">
+                                        </figure>
+                                        <figcaption class="mt-2">
+                                            <h3 class="h5">{{ i.name }}</h3>
+                                            <span class="text-muted">{{ i.author }}</span>
+                                            <div class="item-price fw-bold">₹ {{ i.price }}</div>
+
+                                            <!-- Buttons -->
+                                            <div class="d-flex justify-content-between mt-2">
+                                                <a href="/Myapp/EditBook/{{ i.id }}/" class="btn btn-sm btn-primary">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </a>
+                                                <a href="/Myapp/deleteBook/{{ i.id }}/" class="btn btn-sm btn-danger"
+                                                   onclick="return confirm('Are you sure you want to delete this book?');">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </a>
+                                            </div>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+
+
+
+
+						</div><!--ft-books-slider-->
+					</div><!--grid-->
+
+
+				</div><!--inner-content-->
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="btn-wrap align-right">
+						<a href="/Myapp/Add_book" class="btn-accent-arrow">Add Book <i
+								class="icon icon-ns-arrow-right"></i></a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="popular-books" class="bookshelf py-5 my-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="section-header align-center">
+						<div class="title">
+							<span>Some quality items</span>
+						</div>
+						<h2 class="section-title">Popular Books</h2>
+					</div>
+                <ul class="tabs">
+                    <li data-tab-target="#all-genre" class="active tab">All Genre</li>
+                    {% for category in categories %}
+                        <li data-tab-target="#category-{{ category.id }}" class="tab">
+                            {{ category.category }}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="tab-content">
+                    <!-- All Genre Tab -->
+                    <div id="all-genre" data-tab-content class="active">
+                        <div class="row">
+                            {% for book in book %}
+                            <div class="col-md-3">
+                                <div class="product-item">
+                                    <figure class="product-style">
+                                        <img src="{{ book.photo.url }}" alt="{{ book.name }}" class="product-item">
+                                        <form action="/Myapp/BookDetails/{{ book.id }}/" method="post">
+                                                <button type="submit" class="add-to-cart">View Details</button>
+                                                    </form>
+                                    </figure>
+                                    <figcaption>
+                                        <h3>{{ book.name }}</h3>
+                                        <span>{{ book.author }}</span>
+                                        <div class="item-price">₹ {{ book.price }}</div>
+                                    </figcaption>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                      <!-- Category-wise Tabs -->
+                        {% for category in categories %}
+                        <div id="category-{{ category.id }}" data-tab-content>
+                            <div class="row">
+                                {% for book in book %}
+                                    {% if book.CATEGORY.id == category.id %}
+                                    <div class="col-md-3">
+                                        <div class="product-item">
+                                            <figure class="product-style">
+                                                <img src="{{ book.photo.url }}" alt="{{ book.name }}" class="product-item">
+                                                <form action="/Myapp/BookDetails/{{ book.id }}/" method="post">
+                                                <button type="submit" class="add-to-cart">View Details</button>
+                                                    </form>
+                                            </figure>
+                                            <figcaption>
+                                                <h3>{{ book.name }}</h3>
+                                                <span>{{ book.author }}</span>
+                                                <div class="item-price">₹ {{ book.price }}</div>
+                                            </figcaption>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+{#					<ul class="tabs">#}
+{#						<li data-tab-target="#all-genre" class="active tab">All Genre</li>#}
+{#						<li data-tab-target="#business" class="tab">Business</li>#}
+{#						<li data-tab-target="#technology" class="tab">Technology</li>#}
+{#						<li data-tab-target="#romantic" class="tab">Romantic</li>#}
+{#						<li data-tab-target="#adventure" class="tab">Adventure</li>#}
+{#						<li data-tab-target="#fictional" class="tab">Fictional</li>#}
+{#					</ul>#}
+{##}
+{#					<div class="tab-content">#}
+{#						<div id="all-genre" data-tab-content class="active">#}
+{#							<div class="row">#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item1.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Portrait photography</h3>#}
+{#											<span>Adam Silber</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item2.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Once upon a time</h3>#}
+{#											<span>Klien Marry</span>#}
+{#											<div class="item-price">$ 35.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item3.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Tips of simple lifestyle</h3>#}
+{#											<span>Bratt Smith</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item4.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Just felt from outside</h3>#}
+{#											<span>Nicole Wilson</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#							</div>#}
+{#							<div class="row">#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item5.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Peaceful Enlightment</h3>#}
+{#											<span>Marmik Lama</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item6.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Great travel at desert</h3>#}
+{#											<span>Sanchit Howdy</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item7.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Life among the pirates</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item8.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Simple way of piece life</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#							</div>#}
+{##}
+{#						</div>#}
+{#						<div id="business" data-tab-content>#}
+{#							<div class="row">#}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item2.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Peaceful Enlightment</h3>#}
+{#											<span>Marmik Lama</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item4.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Great travel at desert</h3>#}
+{#											<span>Sanchit Howdy</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item6.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Life among the pirates</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item8.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Simple way of piece life</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#							</div>#}
+{#						</div>#}
+{##}
+{#						<div id="technology" data-tab-content>#}
+{#							<div class="row">#}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item1.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Peaceful Enlightment</h3>#}
+{#											<span>Marmik Lama</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item3.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Great travel at desert</h3>#}
+{#											<span>Sanchit Howdy</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item5.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Life among the pirates</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item7.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Simple way of piece life</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{##}
+{#						<div id="romantic" data-tab-content>#}
+{#							<div class="row">#}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item1.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Peaceful Enlightment</h3>#}
+{#											<span>Marmik Lama</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item3.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Great travel at desert</h3>#}
+{#											<span>Sanchit Howdy</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item5.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Life among the pirates</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item7.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Simple way of piece life</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{##}
+{#						<div id="adventure" data-tab-content>#}
+{#							<div class="row">#}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item5.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Life among the pirates</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item7.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Simple way of piece life</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{##}
+{#						<div id="fictional" data-tab-content>#}
+{#							<div class="row">#}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item5.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Life among the pirates</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{##}
+{#								<div class="col-md-3">#}
+{#									<div class="product-item">#}
+{#										<figure class="product-style">#}
+{#											<img src="/static/user/images/tab-item7.jpg" alt="Books" class="product-item">#}
+{#											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to#}
+{#												Cart</button>#}
+{#										</figure>#}
+{#										<figcaption>#}
+{#											<h3>Simple way of piece life</h3>#}
+{#											<span>Armor Ramsey</span>#}
+{#											<div class="item-price">$ 40.00</div>#}
+{#										</figcaption>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{##}
+{#					</div>#}
+
+				</div><!--inner-tabs-->
+
+			</div>
+		</div>
+	</section>
+{##}
+{#	<section id="quotation" class="align-center pb-5 mb-5">#}
+{#		<div class="inner-content">#}
+{#			<h2 class="section-title divider">Quote of the day</h2>#}
+{#			<blockquote data-aos="fade-up">#}
+{#				<q>“The more that you read, the more things you will know. The more that you learn, the more places#}
+{#					you’ll go.”</q>#}
+{#				<div class="author-name">Dr. Seuss</div>#}
+{#			</blockquote>#}
+{#		</div>#}
+{#	</section>#}
+
+
+<section id="bookloop-subscribe" class="py-5" style="background:#fdfbf7;">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+
+      <div class="col-md-10">
+        <div class="row align-items-center">
+
+          <!-- Left text -->
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="title-element">
+              <h2 class="section-title divider">Stay Connected with Book Loop</h2>
+              <p class="text-muted mt-3">
+                Get updates on the latest books, rentals, and special offers.
+                Be the first to know what’s trending in your reading loop!
+              </p>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="site-features" class="py-5 my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center mb-5">
+        <div class="title">
+          <span style="color:#b5835a;">Explore What You Can Do</span>
+        </div>
+        <h2 class="section-title" style="color:#6c4a2e; font-weight:700;">BookLoop Features</h2>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Feature 1 -->
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4 shadow-sm rounded" style="background:#fffefc;">
+          <div class="icon mb-3">
+            <i class="bi bi-book-half" style="font-size:2.5rem; color:#b5835a;"></i>
+          </div>
+          <h4 style="color:#6c4a2e; font-weight:600;">Buy Books</h4>
+          <p style="color:#555;">
+            Browse through a wide collection of books and purchase instantly with secure payment options.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4 shadow-sm rounded" style="background:#fffefc;">
+          <div class="icon mb-3">
+            <i class="bi bi-journal-arrow-down" style="font-size:2.5rem; color:#b5835a;"></i>
+          </div>
+          <h4 style="color:#6c4a2e; font-weight:600;">Rent Books</h4>
+          <p style="color:#555;">
+            Save money by renting books from other users and return them when done.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4 shadow-sm rounded" style="background:#fffefc;">
+          <div class="icon mb-3">
+            <i class="bi bi-chat-dots" style="font-size:2.5rem; color:#b5835a;"></i>
+          </div>
+          <h4 style="color:#6c4a2e; font-weight:600;">Chat with Owners</h4>
+          <p style="color:#555;">
+            Communicate directly with book owners to discuss availability, condition, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5 g-4">
+      <!-- Feature 4 -->
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4 shadow-sm rounded" style="background:#fffefc;">
+          <div class="icon mb-3">
+            <i class="bi bi-star-half" style="font-size:2.5rem; color:#b5835a;"></i>
+          </div>
+          <h4 style="color:#6c4a2e; font-weight:600;">Reviews & Ratings</h4>
+          <p style="color:#555;">
+            Share your experience and rate books to help other readers choose better.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4 shadow-sm rounded" style="background:#fffefc;">
+          <div class="icon mb-3">
+            <i class="bi bi-cash-stack" style="font-size:2.5rem; color:#b5835a;"></i>
+          </div>
+          <h4 style="color:#6c4a2e; font-weight:600;">Secure Payments</h4>
+          <p style="color:#555;">
+            Pay safely using our integrated gateway and track your purchases easily.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="col-md-4">
+        <div class="feature-card text-center p-4 shadow-sm rounded" style="background:#fffefc;">
+          <div class="icon mb-3">
+            <i class="bi bi-geo-alt" style="font-size:2.5rem; color:#b5835a;"></i>
+          </div>
+          <h4 style="color:#6c4a2e; font-weight:600;">Locate & Connect</h4>
+          <p style="color:#555;">
+            Easily find the location of book owners and connect with them for exchange.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+  /* Complaint Card Section */
+  .c-section {
+    background: #fffdf5;
+    padding: 60px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin: 40px auto;
+    max-width: 1000px;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  .c-title {
+    color: #b5835a;
+    font-weight: bold;
+  }
+
+  .c-btn {
+    background-color: #d4a373;
+    color: white;
+    border: none;
+  }
+  .c-btn:hover {
+    background-color: #b5835a;
+  }
+
+  .complaint-card {
+    background: #fffef9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+    position: relative;
+  }
+  .complaint-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .complaint-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+  }
+
+  .complaint-text {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #4a3d32;
+  }
+
+  .complaint-reply {
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .c-delete-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #e57373;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .c-delete-icon:hover {
+    color: #c62828;
+  }
+</style>
+
+<section class="c-section" id="complaint">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="c-title"><i class="bi bi-chat-dots"></i> My Complaints</h2>
+      <button class="btn c-btn" data-bs-toggle="modal" data-bs-target="#addComplaintModal">
+        <i class="bi bi-plus-circle"></i> Add Complaint
+      </button>
+    </div>
+
+    <!-- Complaints as Cards -->
+    {% for c in complaints %}
+    <div class="complaint-card">
+      <!-- Small Delete Icon -->
+      <form method="post" action="/Myapp/DeleteComplaint/{{ c.id }}/" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="c-delete-icon" title="Delete">
+          <i class="bi bi-trash">🗑</i>
+        </button>
+      </form>
+
+      <div class="complaint-date">
+        <i class="bi bi-calendar3"></i> {{ c.date }}
+      </div>
+      <div class="complaint-text">
+        <i class="bi bi-exclamation-circle"></i> {{ c.complaint }}
+      </div>
+      <div class="complaint-reply">
+        {% if c.reply %}
+          <span class="text-success"><i class="bi bi-check-circle"></i> {{ c.reply }}</span>
+        {% else %}
+          <span class="text-muted"><i class="bi bi-hourglass-split"></i> Pending</span>
+        {% endif %}
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-muted">No complaints yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- Add Complaint Modal -->
+<div class="modal fade" id="addComplaintModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-pencil-square"></i> New Complaint</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="/Myapp/AddComplaintPost/" method="POST">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Complaint</label>
+            <textarea class="form-control" name="complaint" rows="4" placeholder="Write your complaint..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-complaint">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+<footer id="footer" class="py-5" style="background:#fff8e7; border-top:2px solid #e5d5c3;">
+  <div class="container">
+    <div class="row">
+
+      <!-- Brand & About -->
+      <div class="col-md-4 mb-4">
+        <div class="footer-item">
+          <img src="/static/user/images/main-logo.png" alt="Book Loop Logo" class="footer-logo mb-3" style="max-height:60px;">
+          <p class="text-muted">
+            Book Loop is your trusted space to <strong>buy, sell, rent, and share books</strong>.
+            Join the loop and keep stories moving ✨
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-2 mb-4">
+        <h5 class="fw-bold text-dark">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/" class="text-decoration-none text-muted">Home</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Browse Books</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Rent a Book</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">My Account</a></li>
+        </ul>
+      </div>
+
+      <!-- Community -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold text-dark">Community</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-muted">Reader Stories</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Author’s Corner</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Events & Meetups</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Feedback</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact & Social -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold text-dark">Get in Touch</h5>
+        <p class="text-muted mb-2">Have a question or suggestion? We’d love to hear from you.</p>
+        <p class="text-muted"><i class="bi bi-envelope-fill me-2"></i> support@bookloop.com</p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#" class="text-dark fs-5"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-dark fs-5"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-dark fs-5"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-dark fs-5"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom note -->
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <small class="text-muted">&copy; {{ year }} Book Loop. All Rights Reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+	<div id="footer-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="copyright">
+						<div class="row">
+
+							<div class="col-md-6">
+                                <p>© 2025 All rights reserved. Book Loop</p>
+							</div>
+
+							<div class="col-md-6">
+								<div class="social-links align-right">
+									<ul>
+										<li>
+											<a href="#"><i class="icon icon-facebook"></i></a>
+										</li>
+										<li>
+											<a href="#"><i class="icon icon-twitter"></i></a>
+										</li>
+										<li>
+											<a href="#"><i class="icon icon-youtube-play"></i></a>
+										</li>
+										<li>
+											<a href="#"><i class="icon icon-behance-square"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div><!--grid-->
+
+				</div><!--footer-bottom-content-->
+			</div>
+		</div>
+	</div>
+    <!-- Change Password Button -->
+
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content c-modal">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordLabel"><i class="bi bi-key-fill"></i> Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form method="post" action="/Myapp/change_passwordpostUser/">
+        {% csrf_token %}
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label class="form-label">Current Password</label>
+            <input type="password" class="form-control" name="current_password" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-control" name="new_password" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" name="confirm_password" required>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn c-btn">Update Password</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script src="/static/user/js/jquery-1.11.0.min.js"></script>
+	<script src="/static/user/https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<script src="/static/user/js/plugins.js"></script>
+	<script src="/static/user/js/script.js"></script>
+
+<script>
+    // BookLoop Search Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.querySelector('.search-box');
+    const searchInput = document.querySelector('.search-input');
+    const searchButton = document.querySelector('.search-button');
+
+    // Get all book containers
+    const myBooksSection = document.querySelector('#featured-books .row');
+    const popularBooksSection = document.querySelector('#popular-books');
+    const tabContents = document.querySelectorAll('[data-tab-content]');
+
+    // Store original content
+    let originalMyBooks = null;
+    let originalPopularBooks = {};
+
+    // Store original content on page load
+    if (myBooksSection) {
+        originalMyBooks = myBooksSection.innerHTML;
+    }
+
+    tabContents.forEach(tab => {
+        originalPopularBooks[tab.id] = tab.innerHTML;
+    });
+
+    // Search function
+    function performSearch(query) {
+        query = query.toLowerCase().trim();
+
+        if (query === '') {
+            resetSearch();
+            return;
+        }
+
+        // Search in My Books section
+        searchMyBooks(query);
+
+        // Search in Popular Books section
+        searchPopularBooks(query);
+
+        // Show search results message
+        showSearchResults(query);
+    }
+
+    function searchMyBooks(query) {
+        const myBooksContainer = document.querySelector('#featured-books .row');
+        if (!myBooksContainer) return;
+
+        const bookCards = myBooksContainer.querySelectorAll('.col-md-3');
+        let foundBooks = 0;
+
+        bookCards.forEach(card => {
+            const bookName = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+            const authorName = card.querySelector('.text-muted') ? card.querySelector('.text-muted').textContent.toLowerCase() : '';
+
+            if (bookName.includes(query) || authorName.includes(query)) {
+                card.style.display = 'block';
+                foundBooks++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Show/hide section based on results
+        const myBooksSection = document.querySelector('#featured-books');
+        if (foundBooks === 0) {
+            myBooksSection.style.display = 'none';
+        } else {
+            myBooksSection.style.display = 'block';
+        }
+    }
+
+    function searchPopularBooks(query) {
+        const activeTab = document.querySelector('[data-tab-content].active');
+        if (!activeTab) return;
+
+        const bookCards = activeTab.querySelectorAll('.col-md-3');
+        let foundBooks = 0;
+
+        bookCards.forEach(card => {
+            const bookName = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+            const authorName = card.querySelector('span') ? card.querySelector('span').textContent.toLowerCase() : '';
+
+            if (bookName.includes(query) || authorName.includes(query)) {
+                card.style.display = 'block';
+                foundBooks++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Show/hide section based on results
+        const popularBooksSection = document.querySelector('#popular-books');
+        if (foundBooks === 0) {
+            popularBooksSection.style.display = 'none';
+        } else {
+            popularBooksSection.style.display = 'block';
+        }
+    }
+
+    function showSearchResults(query) {
+        // Remove existing search results message
+        const existingMessage = document.querySelector('.search-results-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        // Create search results message
+        const searchMessage = document.createElement('div');
+        searchMessage.className = 'search-results-message';
+        searchMessage.innerHTML = `
+            <div class="container py-3">
+                <div class="alert alert-info d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-search"></i> Showing search results for: "<strong>${query}</strong>"</span>
+                    <button type="button" class="btn btn-sm btn-outline-secondary clear-search">
+                        <i class="bi bi-x-circle"></i> Clear Search
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Insert after billboard section
+        const billboard = document.querySelector('#billboard');
+        if (billboard) {
+            billboard.insertAdjacentElement('afterend', searchMessage);
+        }
+
+        // Add clear search functionality
+        const clearButton = searchMessage.querySelector('.clear-search');
+        clearButton.addEventListener('click', function() {
+            searchInput.value = '';
+            resetSearch();
+        });
+    }
+
+    function resetSearch() {
+        // Remove search results message
+        const existingMessage = document.querySelector('.search-results-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        // Reset My Books section
+        if (originalMyBooks && myBooksSection) {
+            myBooksSection.innerHTML = originalMyBooks;
+        }
+
+        // Reset Popular Books sections
+        tabContents.forEach(tab => {
+            if (originalPopularBooks[tab.id]) {
+                tab.innerHTML = originalPopularBooks[tab.id];
+            }
+        });
+
+        // Show all sections
+        const myBooksSection = document.querySelector('#featured-books');
+        const popularBooksSection = document.querySelector('#popular-books');
+
+        if (myBooksSection) myBooksSection.style.display = 'block';
+        if (popularBooksSection) popularBooksSection.style.display = 'block';
+
+        // Re-initialize tab functionality after reset
+        initializeTabs();
+    }
+
+    function initializeTabs() {
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('[data-tab-content]');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = document.querySelector(this.getAttribute('data-tab-target'));
+
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                if (target) {
+                    target.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // Event listeners
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const query = searchInput.value;
+        performSearch(query);
+    });
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value;
+        if (query.length > 2) {
+            performSearch(query);
+        } else if (query.length === 0) {
+            resetSearch();
+        }
+    });
+
+    searchButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        const query = searchInput.value;
+        performSearch(query);
+    });
+
+    // Handle search toggle
+    const searchToggle = document.querySelector('.search-toggle');
+    if (searchToggle) {
+        searchToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const searchBar = document.querySelector('.search-bar');
+            searchBar.classList.toggle('active');
+            searchInput.focus();
+        });
+    }
+
+    // Initialize tabs on page load
+    initializeTabs();
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + K to focus search
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            searchInput.focus();
+        }
+
+        // Escape to clear search
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.value = '';
+            resetSearch();
+            searchInput.blur();
+        }
+    });
+});
+
+// Additional CSS styles for search functionality
+const searchStyles = `
+<style>
+.search-results-message {
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.search-bar.active {
+    display: block !important;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(181, 131, 90, 0.25);
+    border-color: #b5835a;
+}
+
+.clear-search:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+#featured-books[style*="display: none"],
+#popular-books[style*="display: none"] {
+    display: none !important;
+}
+
+/* Highlight search terms */
+.search-highlight {
+    background-color: #fff3cd;
+    padding: 1px 3px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+/* Animation for search results */
+.search-results-message {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive search */
+@media (max-width: 768px) {
+    .search-results-message .alert {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+</style>
+`;
+
+// Inject styles into the page
+document.head.insertAdjacentHTML('beforeend', searchStyles);
+</script>
+
+</body>
+
+</html>

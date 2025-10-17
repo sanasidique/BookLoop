@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BookLoop — User Registration</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<!-- Leaflet GeoSearch CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.8.0/dist/geosearch.css" />
+
+<style>
+    body {
+        height: 100%;
+        background: linear-gradient(135deg, #fff8e7, #fffdf6, #f0e9de);
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    #map {
+        height: 300px;
+        border-radius: 8px;
+        border: 1px solid #d9c7b0;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #7a6a5a;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #d9c7b0;
+        background: #fffaf0;
+        padding: 12px 14px;
+    }
+
+    .form-control:focus {
+        border-color: #d9a066;
+        box-shadow: 0 4px 15px rgba(217,160,102,0.15);
+        outline: none;
+    }
+
+    .btn-register {
+        background: linear-gradient(90deg, #d9a066, #b8874f);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .btn-register:hover {
+        background: #b8874f;
+    }
+
+    .container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+    }
+
+    h3 {
+        color: #7a6a5a;
+        font-weight: 700;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card shadow p-4 w-100" style="max-width: 700px;">
+        <h3 class="text-center mb-4">User Registration</h3>
+
+        <form id="registrationForm" action="/Myapp/RegistrationPost/" method="POST" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter name" pattern="[A-Za-z\s]+"
+       title="Only letters and spaces are allowed" required>
+                    <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                    <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input type="number" class="form-control" name="phone" placeholder="10-digit phone" pattern="^[1-9][0-9]{9}$" required>
+                    <div class="invalid-feedback">Phone must be 10 digits and cannot start with 0.</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">District</label>
+                    <input type="text" class="form-control" name="district" placeholder="Enter district" pattern="[A-Za-z\s]+"
+       title="Only letters and spaces are allowed" required>
+                    <div class="invalid-feedback">Please enter district.</div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Pincode</label>
+                    <input type="number" class="form-control" name="pincode" placeholder="6-digit pincode" pattern="^[0-9]{6}$" required>
+                    <div class="invalid-feedback">Pincode must be exactly 6 digits.</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Place</label>
+                    <input type="text" class="form-control" name="place" placeholder="Enter place" pattern="[A-Za-z\s]+"
+       title="Only letters and spaces are allowed" required>
+                    <div class="invalid-feedback">Please enter place.</div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Photo</label>
+                <input type="file" class="form-control" name="photo" accept="image/*" required>
+                <div class="invalid-feedback">Please upload a photo.</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Select Location on Map</label>
+                <div id="map"></div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="form-label">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" name="latitude" readonly required>
+                    <div class="invalid-feedback">Please select a location.</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Longitude</label>
+                    <input type="text" class="form-control" id="longitude" name="longitude" readonly required>
+                    <div class="invalid-feedback">Please select a location.</div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="invalid-feedback">Please enter a username.</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <div class="invalid-feedback">Please enter a password.</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-register w-100">Register</button>
+        </form>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-geosearch@3.8.0/dist/geosearch.umd.js"></script>
+
+<script>
+    // Map setup
+    var map = L.map('map').setView([10.8505, 76.2711], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const provider = new GeoSearch.OpenStreetMapProvider({ params: { countrycodes: 'in' } });
+    const searchControl = new GeoSearch.GeoSearchControl({
+        provider: provider,
+        style: 'bar',
+        showMarker: true,
+        autoClose: true,
+        searchLabel: 'Search location',
+        position: 'topright',
+        autoComplete: true,
+        autoCompleteDelay: 250
+    });
+    map.addControl(searchControl);
+
+    var marker;
+    function updateCoordinates(lat, lng) {
+        document.getElementById('latitude').value = lat.toFixed(6);
+        document.getElementById('longitude').value = lng.toFixed(6);
+        if (marker) map.removeLayer(marker);
+        marker = L.marker([lat, lng]).addTo(map);
+        map.setView([lat, lng], 13);
+    }
+
+    map.on('click', function(e) { updateCoordinates(e.latlng.lat, e.latlng.lng); });
+    map.on('geosearch/showlocation', function(e) { updateCoordinates(e.location.y, e.location.x); });
+
+    // Bootstrap validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('#registrationForm');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })();
+</script>
+</body>
+</html>

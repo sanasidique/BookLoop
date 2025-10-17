@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit category</title>
+</head>
+<body>
+{% extends 'Admin/adminhome.html'%}
+{% block body %}
+<form action="/editcategoryPost" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    <table border="1">
+        <tr>
+            <td width="133">category</td>
+            <td width="197">
+                <label>
+                    <input type="text" name="textfield" value="{{ data.name }}"/>
+                </label>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <div class="center">
+                    <label>
+                        <input type="submit" name="Submit" value="Update"/>
+                    </label>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+{% endblock %}

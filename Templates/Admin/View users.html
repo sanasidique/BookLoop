@@ -1,0 +1,63 @@
+{% extends 'Admin/admin_home.html'%}
+{% block body %}
+<body style="background-color: #fdfaf6;">
+
+<div class="container py-4">
+    <div class="card shadow-lg border-0 rounded-4 mb-4">
+        <div class="card-header text-white text-center"
+             style="background: linear-gradient(90deg, #f5ead3 0%, #8b4513 100%);">
+            <h4 class="mb-0">👥 User Details</h4>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for i in data %}
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <!-- User Photo -->
+                {% if i.photo.url %}
+                    <img src="{{ i.photo.url }}" alt="User Photo"
+                         class="card-img-top rounded-top-4"
+                         style="height:200px; object-fit:cover;">
+                {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center rounded-top-4"
+                         style="height:200px;">
+                        <span class="text-muted">No Photo</span>
+                    </div>
+                {% endif %}
+
+                <!-- Card Body -->
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ i.name }}</h5>
+                    <p class="card-text mb-1"><i class="bi bi-envelope"></i> {{ i.email }}</p>
+                    <p class="card-text mb-1"><i class="bi bi-telephone"></i> {{ i.phone }}</p>
+                    <p class="card-text small text-muted">
+                        <i class="bi bi-geo-alt"></i>
+                        {{ i.place }}, {{ i.district }} - {{ i.pincode }}
+                    </p>
+                </div>
+
+                <!-- Card Footer -->
+                <div class="card-footer bg-transparent border-0 text-center">
+                    <a href="https://www.google.com/maps?q={{ i.latitude }},{{ i.longitude }}"
+                       target="_blank"
+                       class="btn btn-sm text-white rounded-pill px-3"
+                       style="background: linear-gradient(90deg, #f5ead3 0%, #8b4513 100%); border: none;">
+                        <i class="bi bi-geo-alt-fill"></i> Locate
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-muted">
+            No records found
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+</body>
+{% endblock %}

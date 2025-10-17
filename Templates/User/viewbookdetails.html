@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book View</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #fdfbf7;
+      font-family: "Segoe UI", sans-serif;
+    }
+    .book-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 30px;
+      margin-top: 40px;
+    }
+    .book-img {
+      border-radius: 12px;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .request-btn {
+      background: #b5835a;
+      color: white;
+      border: none;
+      transition: 0.3s;
+    }
+    .request-btn:hover {
+      background: #8c5c3d;
+    }
+    .review-card {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #fffefc;
+    }
+    .review-stars {
+      color: #f5c518;
+    }
+    .review-section h4 {
+      font-weight: bold;
+      color: #5a4636;
+      margin-bottom: 20px;
+    }
+    .modal-header {
+      background: #f1e3c6;
+      border-bottom: none;
+      border-radius: 12px 12px 0 0;
+    }
+
+    /* star rating input */
+    .star-rating {
+      direction: rtl;
+      display: inline-flex;
+      font-size: 1.8rem;
+      gap: 5px;
+    }
+    .star-rating input {
+      display: none;
+    }
+    .star-rating label {
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+      color: #f5c518;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Book Card -->
+  <div class="book-card row">
+    <div class="col-md-4 text-center">
+      <img src="{{ book.photo.url }}" alt="Book Image" class="img-fluid book-img">
+    </div>
+
+    <div class="col-md-8">
+      <h2>{{ book.name }}</h2>
+      <p class="text-muted">by <strong>{{ book.author }}</strong></p>
+      <p>{{ book.details }}</p>
+      <h4 class="text-success">₹ {{ book.price }}</h4>
+        <h6 class="text-success">Rent price:₹{{ book.rent_price }}</h6>
+
+
+<!-- ================= BUY REQUEST ================= -->
+{% if requested %}
+  {% if requested.status == "pending" %}
+      <button type="button" class="btn request-btn mt-3" disabled>
+        <i class="bi bi-hourglass-split"></i> Purchase Request Sent
+      </button>
+
+  {% elif requested.status == "Rejected" %}
+      <form action="/Myapp/RequestBook/{{ book.id }}/" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn request-btn mt-3">
+          <i class="bi bi-bag-plus"></i> Request Again
+        </button>
+      </form>
+
+  {% elif requested.status == "Accepted" %}
+      <a href="/Myapp/chat/{{ requested.BOOK.USER.LOGIN.id }}" class="btn btn-outline-dark mt-3">
+        <i class="bi bi-chat-dots"></i> Chat
+      </a>
+      <a href="/Myapp/raz_pay/{{ book.price }}/{{ requested.id }}/" class="btn btn-success mt-3 ms-2">
+        <i class="bi bi-cash"></i> Pay
+      </a>
+
+  {% elif requested.status == "paid" %}
+      <button type="button" class="btn btn-success mt-3" disabled>
+        <i class="bi bi-check2-circle"></i> Successfully Purchased
+      </button>
+  {% endif %}
+{% else %}
+  <form action="/Myapp/RequestBook/{{ book.id }}/" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn request-btn mt-3">
+      <i class="bi bi-bag-plus"></i> Request to Buy
+    </button>
+  </form>
+{% endif %}
+
+
+<!-- ================= RENT REQUEST ================= -->
+{% if rent_requested %}
+  {% if rent_requested.status == "pending" %}
+      <button type="button" class="btn request-btn mt-3" disabled>
+        <i class="bi bi-hourglass-split"></i> Rent Request Sent
+      </button>
+
+  {% elif rent_requested.status == "Rejected" %}
+      <form action="/Myapp/RequestRentBook/{{ book.id }}/" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn request-btn mt-3">
+          <i class="bi bi-bag-plus"></i> Request Rent Again
+        </button>
+      </form>
+
+  {% elif rent_requested.status == "Accepted" %}
+      <a href="/Myapp/chat/{{ rent_requested.BOOK.USER.LOGIN.id }}" class="btn btn-outline-dark mt-3">
+        <i class="bi bi-chat-dots"></i> Chat
+      </a>
+      <a href="/Myapp/raz_pay_rent/{{ book.rent_price }}/{{ rent_requested.id }}/" class="btn btn-success mt-3 ms-2">
+        <i class="bi bi-cash"></i> Pay Rent
+      </a>
+
+  {% elif rent_requested.status == "paid" %}
+      <button type="button" class="btn btn-success mt-3" disabled>
+        <i class="bi bi-check2-circle"></i> Successfully Rented
+      </button>
+  {% endif %}
+{% else %}
+  <form action="/Myapp/RequestRentBook/{{ book.id }}/" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn request-btn mt-3">
+      <i class="bi bi-bag-plus"></i> Request to Rent
+    </button>
+  </form>
+{% endif %}
+
+    </div>
+  </div>
+
+  <!-- Review Section (Always Visible) -->
+  <div class="review-section mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4><i class="bi bi-chat-left-text"></i> Reviews</h4>
+      <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+        <i class="bi bi-plus-circle"></i> Add Review
+      </button>
+    </div>
+
+    {% for r in reviews %}
+    <div class="review-card">
+      <div class="d-flex justify-content-between">
+        <strong>{{ r.USER.name }}</strong>
+        <small class="text-muted">{{ r.date }}</small>
+      </div>
+      <div class="review-stars mb-2">
+        {% for i in "12345"|make_list %}
+          {% if i <= r.rating %}
+            <i class="bi bi-star-fill"></i>
+          {% else %}
+            <i class="bi bi-star"></i>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <p>{{ r.review }}</p>
+    </div>
+    {% empty %}
+    <p class="text-muted">No reviews yet.</p>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Add Review Modal -->
+<div class="modal fade" id="addReviewModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-star"></i> Add Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/Myapp/ReviewPost/{{ book.id }}/">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label">Your Review</label>
+            <textarea class="form-control" name="review" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Rating</label>
+            <div class="star-rating">
+              <input type="radio" id="star5" name="rating" value="5" required><label for="star5"><i class="bi bi-star-fill"></i></label>
+              <input type="radio" id="star4" name="rating" value="4"><label for="star4"><i class="bi bi-star-fill"></i></label>
+              <input type="radio" id="star3" name="rating" value="3"><label for="star3"><i class="bi bi-star-fill"></i></label>
+              <input type="radio" id="star2" name="rating" value="2"><label for="star2"><i class="bi bi-star-fill"></i></label>
+              <input type="radio" id="star1" name="rating" value="1"><label for="star1"><i class="bi bi-star-fill"></i></label>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn request-btn">Submit Review</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

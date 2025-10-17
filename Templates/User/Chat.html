@@ -1,0 +1,476 @@
+
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+<link href="/static/chat_style/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+<script src="/static/chat_style/bootstrap.min.js"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<script src="/static/chat_style/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.clearfix:after {
+display: block;
+clear: both;
+content: "";
+}
+.clearfix:after {
+    visibility: hidden;
+    font-size: 0;
+    content: " ";
+    height:0
+}
+
+		</style>
+		<title>Chat</title>
+		<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+		<link rel="stylesheet" href="/static/chatstyle/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">-->
+		<link rel="stylesheet" href="/static/chatstyle/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+		<script src="/static/chatstyle/jquery.min.js"></script>
+		<!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">-->
+		<link rel="stylesheet" type="text/css" href="/static/chatstyle/jquery.mCustomScrollbar.min.css">
+		<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>-->
+		<script type="text/javascript" src="/static/chatstyle/jquery.mCustomScrollbar.min.js"></script>
+	</head>
+	<!--Coded With Love By Mutiullah Samim-->
+	<body>
+
+		<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
+<!--				<div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">-->
+<!--					contacts_card<div class="card-header">-->
+<!--						<div class="input-group">-->
+<!--							<a href="/student" style="color: white">Go to Home</a>-->
+<!--							&lt;!&ndash;<input type="text" placeholder="Search..." name="" class="form-control search">&ndash;&gt;-->
+<!--							&lt;!&ndash;<div class="input-group-prepend">&ndash;&gt;-->
+<!--								&lt;!&ndash;<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>&ndash;&gt;-->
+<!--							&lt;!&ndash;</div>&ndash;&gt;-->
+<!--						</div>-->
+<!--					</div>-->
+<!--                    <div id="tb1">-->
+<!--                        <input type="hidden" name="d" id="d" value="{{ toid }}" />-->
+<!--           <input type="hidden" name="textfield2" id="rece" />-->
+
+<!--                    </div>-->
+<!--					&lt;!&ndash;<div class="card-body contacts_body">&ndash;&gt;-->
+<!--						&lt;!&ndash;<ui class="contacts">&ndash;&gt;-->
+<!--						&lt;!&ndash;<li class="active">&ndash;&gt;-->
+<!--							&lt;!&ndash;<div class="d-flex bd-highlight">&ndash;&gt;-->
+<!--								<div class="img_cont">-->
+<!--									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">-->
+<!--									<span class="online_icon"></span>-->
+<!--								</div>-->
+<!--								&lt;!&ndash;<div class="user_info" id="tb1">&ndash;&gt;-->
+<!--									&lt;!&ndash;&lt;!&ndash;<span>Khalid</span>&ndash;&gt;&ndash;&gt;-->
+<!--									&lt;!&ndash;&lt;!&ndash;<p>Kalid is online</p>&ndash;&gt;&ndash;&gt;-->
+<!--                                   &lt;!&ndash;&lt;!&ndash;id="tb1" name="tb1"&ndash;&gt;&ndash;&gt;-->
+<!--								&lt;!&ndash;</div>&ndash;&gt;-->
+<!--							&lt;!&ndash;</div>&ndash;&gt;-->
+<!--						&lt;!&ndash;</li>&ndash;&gt;-->
+<!--                        &lt;!&ndash;</ui>&ndash;&gt;-->
+<!--					&lt;!&ndash;</div>&ndash;&gt;-->
+<!--					<div class="card-footer"></div>-->
+<!--				</div></div>-->
+
+				<div class="col-md-8 col-xl-6 chat">
+												<a href="/student" style="color: white">Go to Home</a>
+
+					<div class="card">
+						<div class="card-header msg_head">
+
+							<div class="d-flex bd-highlight">
+
+								<div class="img_cont" id="iiim" align="right" onclick="test()">
+									<div>
+
+									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+
+
+<!--										<div class="chat-about"><h6 class="mb-0">Eliza</h6><small>I love to listen and help. 😍</small></div>-->
+
+
+									</div>
+<!--									<div class="chat-about"><h6 class="mb-0">Eliza</h6><small>I love to listen and help. 😍</small></div>-->
+										<span class="online_icon"></span></p></div>
+								<div class="user_info" id="nnnm" >
+									                        <input type="hidden" name="d" id="d" value="{{ toid }}" />
+
+	<p align="left">	<div ><h6 >Eliza</h6>
+									<small>I love to listen and help. 😍</small></div> <span ></span></p>
+									<!--<p>1767 Messages</p>-->
+								</div>
+								</div>
+
+								<!--<div class="video_cam">-->
+									<!--<span><i class="fas fa-video"></i></span>-->
+									<!--<span><i class="fas fa-phone"></i></span>-->
+								<!--</div>-->
+							</div>
+							<span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+							<!--<div class="action_menu">-->
+								<!--<ul>-->
+									<!--<li><i class="fas fa-user-circle"></i> View profile</li>-->
+									<!--<li><i class="fas fa-users"></i> Add to close friends</li>-->
+									<!--<li><i class="fas fa-plus"></i> Add to group</li>-->
+									<!--<li><i class="fas fa-ban"></i> Block</li>-->
+								<!--</ul>-->
+							<!--</div>-->
+
+						<div class="card-body msg_card_body" >
+
+                            <div id="send1">
+
+                            </div>
+							<!--<div class="d-flex justify-content-start mb-4">-->
+								<!--<div class="img_cont_msg">-->
+									<!--<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">-->
+								<!--</div>-->
+								<!--<div class="msg_cotainer">-->
+									<!--Hi, how are you samim?-->
+									<!--<span class="msg_time">8:40 AM, Today</span>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="d-flex justify-content-end mb-4">-->
+								<!--<div class="msg_cotainer_send">-->
+									<!--Hi Khalid i am good tnx how about you?-->
+									<!--<span class="msg_time_send">8:55 AM, Today</span>-->
+								<!--</div>-->
+								<!--<div class="img_cont_msg">-->
+							<!--<img src="data:image/jpeg;base64,
+								<!--</div>-->
+							<!--</div>-->
+
+					</div>
+                        <div class="card-footer">
+
+							<div class="input-group">
+								<div class="input-group-append">
+									<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+								</div>
+								<textarea name="" id="textfield"class="form-control type_msg" placeholder="Type your message..."></textarea>
+								<div class="input-group-append">
+									<!--<span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>-->
+                                    <input type="submit"class="input-group-text send_btn" value="send" id="button">
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
+<style>
+    	body, html {
+    height: 100%;
+    margin: 0;
+    background: #fff8e7; /* soft cream background */
+    font-family: "Segoe UI", sans-serif;
+}
+
+.chat {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.card {
+    height: 500px;
+    border-radius: 16px !important;
+    background-color: #fffefc !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    border-radius: 16px 16px 0 0 !important;
+    background-color: #d4a373 !important; /* warm brown */
+    border: none !important;
+    color: #fff;
+    font-weight: 600;
+}
+
+.card-footer {
+    border-radius: 0 0 16px 16px !important;
+    border-top: 1px solid #f0e6dc !important;
+    background: #fffdf9 !important;
+}
+
+.msg_card_body {
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* Message bubbles */
+.msg_cotainer {
+    margin-left: 10px;
+    border-radius: 12px;
+    background-color: #fdf3e7; /* light beige */
+    padding: 10px 15px;
+    color: #444;
+    max-width: 70%;
+    position: relative;
+}
+.msg_cotainer_send {
+    margin-right: 10px;
+    border-radius: 12px;
+    background-color: #d4edda; /* light green */
+    padding: 10px 15px;
+    color: #2f5132;
+    max-width: 70%;
+    position: relative;
+}
+.msg_time, .msg_time_send {
+    font-size: 10px;
+    color: #888;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Input area */
+.type_msg {
+    background-color: #fffaf3 !important;
+    border: 1px solid #e0d5c8 !important;
+    border-radius: 8px !important;
+    padding: 10px;
+    color: #333 !important;
+}
+.type_msg:focus {
+    outline: none;
+    border-color: #d4a373;
+    box-shadow: 0 0 0 2px rgba(212,163,115,0.2);
+}
+
+.attach_btn, .send_btn {
+    background-color: #d4a373 !important;
+    border: none !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.attach_btn:hover, .send_btn:hover {
+    background-color: #b5835a !important;
+}
+
+/* User info */
+.user_img {
+    height: 70px;
+    width: 70px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+.user_info h6 {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+}
+.user_info small {
+    color: #f7e9dc;
+}
+.online_icon {
+    background-color: #4cd137;
+    border: 1.5px solid white;
+}
+
+</style>
+<script>
+    	$(document).ready(function(){
+//    	    alert("hoi");
+//$('#action_menu_btn').click(function(){
+//	$('.action_menu').toggle();
+//	$('.iim').click;
+//});
+repeatEverySecond();
+$.ajax({
+{#            url: "/Myapp/chat_view/{{ toid }}",#}
+            url: "/Myapp/chat_view/",
+            type: "GET",
+            data: {
+
+
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(dat) {
+
+
+
+
+                  var data=dat["data"];
+                 var name=dat["name"];
+                 var photo=dat["photo"];
+                 var user_lid=dat["toid"];
+ $("#iiim").text("")
+                $("#nnnm").text("")
+                $("#iiim").append("<img src='"+photo+"' class='rounded-circle user_img'>")
+                $("#nnnm").append("<span>Chat with "+name+"</span>")
+
+             //////////////////
+
+                $("#send1").text("");
+				var len=data.length;
+				for(var i=0;i<len;i++) {
+                    var rid = data[i]['id'];
+                    var type = data[i]['from']
+                    var mesg = data[i]['message'];
+                    var sendid = data[i]['date'];
+
+                    if (type !=user_lid ) {
+//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='right'><div  class='container darker'><div>" + mesg + "</div></td></tr></table></div>")
+
+                    $("#send1").append("<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send'>"+mesg+"</div></div></div>")
+                    }
+                    else  {
+
+//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='left'><div><div class='container darker'>" + mesg + "</div></td></tr></table></div>")
+
+                    $("#send1").append("<div class='d-flex justify-content-start mb-4'><div class=img_cont_msg'></div><div class='msg_cotainer'>"+mesg+"</div></div>")
+
+
+                    }
+
+                }
+
+
+                /////////////////////////////////
+
+            },
+            error: function(ts) {
+//{#                alert(ts);#}
+            }
+        });
+
+	});
+</script>
+
+<script src="/static/jquery.js"></script>
+<script>
+
+    function test() {
+
+           $("#button").show();
+        $("#textfield").show();
+
+
+$.ajax({
+{#            url: "/Myapp/chat_view/{{ toid }}",#}
+            url: "/Myapp/chat_view/",
+            type: "GET",
+            data: {
+
+
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(dat) {
+
+
+
+                 var data=dat["data"];
+                 var name=dat["name"];var photo=dat["photo"];
+                 var user_lid=dat["toid"];
+                   $("#iiim").text("")
+                $("#nnnm").text("")
+                $("#iiim").append("<img src="+photo+" class='rounded-circle user_img'>")
+                $("#nnnm").append("<span>Chat with "+name+"</span>")
+
+             //////////////////
+
+                $("#send1").text("");
+				var len=data.length;
+				for(var i=0;i<len;i++) {
+                    var rid = data[i]['id'];
+                    var type = data[i]['from']
+                    var mesg = data[i]['message'];
+                    var sendid = data[i]['date'];
+
+                    if (type !=user_lid ) {
+//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='right'><div  class='container darker'><div>" + mesg + "</div></td></tr></table></div>")
+                    $("#send1").append("<div class='d-flex justify-content-end mb-4'><div class='msg_cotainer_send'>"+mesg+"</div></div></div>")
+
+                    }
+                    else  {
+
+                    $("#send1").append("<div class='d-flex justify-content-start mb-4'><div class=img_cont_msg'></div><div class='msg_cotainer'>"+mesg+"</div></div>")
+//                        $("#send1").append("<div align='center'><table id=tb1'' style='width:300px;'<tr border=0><td><div align='left'><div><div class='container darker'>" + mesg + "</div></td></tr></table></div>")
+
+
+
+                    }
+
+                }
+
+
+                /////////////////////////////////
+
+            },
+            error: function(ts) {
+//{#                alert(ts);#}
+            }
+        });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+		$("#button").click(function()
+		{
+
+			var msg=$("#textfield").val();
+
+
+
+
+
+  $.ajax({
+{#            url: "/Myapp/chat_send/"+msg+"/"+{{ toid }},#}
+            url: "/Myapp/chat_send/"+msg,
+            type: "GET",
+            data: {
+
+
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(dat) {
+
+
+                $("#textfield").val("");
+
+            },
+            error: function(ts) {
+			}
+
+        });
+
+
+		});
+
+
+
+
+</script>
+<script>
+
+
+function repeatEverySecond() {
+
+//{#    alert('hiii');#}
+  intervalID = setInterval(test, 1000);
+}
+
+</script>
+
+
+

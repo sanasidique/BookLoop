@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff8e7, #fdf3d9);
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle decorative circles */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.15;
+        }
+        body::before {
+            width: 300px;
+            height: 300px;
+            background: #f5d18e;
+            top: -100px;
+            left: -100px;
+        }
+        body::after {
+            width: 250px;
+            height: 250px;
+            background: #e6c07a;
+            bottom: -80px;
+            right: -80px;
+        }
+
+        .card {
+            background-color: #fffefc;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1; /* keep above background shapes */
+        }
+        .card-header {
+            background-color: #f5e6c8;
+            font-weight: bold;
+            font-size: 1.3rem;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .btn-custom {
+            background-color: #f5d18e;
+            color: #000;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .btn-custom:hover {
+            background-color: #e6c07a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <div class="card-header mb-3">
+                    Edit Details
+                </div>
+                <form id="form1" name="form1" method="post" action="/Myapp/BookEditPost/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" value="{{ data.name }}" placeholder="Enter book name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Author</label>
+<input type="text"
+       class="form-control"
+       name="author"
+       placeholder="Enter author name"
+       required
+       value="{{ data.author }}"
+       pattern="[A-Za-z\s]+"
+       title="Only letters and spaces are allowed">                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Photo</label><br>
+                        <img src="{{ data.photo.url }}" alt="Book Photo" height="100" width="100" class="mb-2 rounded shadow-sm">
+<input type="file"
+       class="form-control"
+       name="photo"
+
+       accept="image/*">                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Details</label>
+                        <textarea class="form-control" name="details" placeholder="Enter book details" rows="3" required>{{ data.details }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <input type="number" class="form-control" name="price" value="{{ data.price }}" placeholder="Enter price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Rent Price</label>
+                        <input type="number" class="form-control" name="rent_price" value="{{ data.rent_price }}" placeholder="Enter price" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Category</label>
+                        <select name="category" class="form-select">
+                            {% for i in category %}
+                                <option value="{{ i.id }}" {% if i.id == data.CATEGORY.id %}selected{% endif %}>
+                                    {{ i.category }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom px-5">Edit Book</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

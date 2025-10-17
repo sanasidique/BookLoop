@@ -1,0 +1,84 @@
+{% extends 'Admin/admin_home.html'%}
+{% block body %}
+<body class="bg-light">
+
+<div class="container py-4">
+
+    <!-- Orders / Payments Table -->
+    <div class="mb-5">
+        <h4 class="text-center fw-bold mb-3" style="color:#198754;">📦 Orders / Payments</h4>
+        <div class="table-responsive shadow-sm rounded-3">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead style="background: linear-gradient(90deg, #f5ead3 0%, #8b4513 100%); color: white;">
+                    <tr>
+                        <th>Sl. No</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Buyer</th>
+                        <th>Seller</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.date }}</td>
+                        <td>
+                           {{ i.status }}
+                        </td>
+                        <td>₹ {{ i.amount }}</td>
+                        <td>{{ i.REQUEST.USER.name }}</td>
+                        <td>{{ i.REQUEST.BOOK.USER.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No orders found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Rent Payments Table -->
+    <div>
+        <h4 class="text-center fw-bold mb-3" style="color:#198754;">🏠 Rent Payments</h4>
+        <div class="table-responsive shadow-sm rounded-3">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead style="background: linear-gradient(90deg, #f5ead3 0%, #8b4513 100%); color: white;">
+                    <tr>
+                        <th>Sl. No</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Renter</th>
+                        <th>Owner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in rent %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.date }}</td>
+                        <td>
+                          {{ i.status }}
+                        </td>
+                        <td>₹ {{ i.amount }}</td>
+                        <td>{{ i.RENT.USER.name }}</td>
+                        <td>{{ i.RENT.BOOK.USER.name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No rent payments found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+{% endblock %}
